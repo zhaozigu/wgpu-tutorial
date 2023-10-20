@@ -3,6 +3,10 @@ name = "wgpu_book"
 version = "0.1.0"
 edition = "2021"
 
+[[example]]
+name="ch01_test01"
+path="examples/ch01/test01.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
