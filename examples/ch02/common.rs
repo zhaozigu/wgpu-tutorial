@@ -80,7 +80,11 @@ pub async fn run(event_loop: EventLoop<()>, window: Window, inputs: Inputs<'_>, 
             entry_point: "fs_main",
             targets: &[Some(swapchain_format.into())],
         }),
-        primitive: wgpu::PrimitiveState::default(),
+        primitive: wgpu::PrimitiveState {
+            topology: inputs.topology,
+            strip_index_format: inputs.strip_index_format,
+            ..Default::default()
+        },
         depth_stencil: None,
         multisample: wgpu::MultisampleState::default(),
         multiview: None,
