@@ -4,6 +4,7 @@
 - [ch02_first_triangle](examples/ch02/first_triangle.rs): Hello, Triangle!
 - [ch02_color_triangle](examples/ch02/triangle_vertex_color.rs): Triangle with vertex color
 - [ch03_point_line](examples/ch03/point_line.rs): draw only a few basic shapes
+- [ch03_triangles](examples/ch03/triangles.rs): `TriangleList` and `TriangleStrip`
 
 ## Usage
 

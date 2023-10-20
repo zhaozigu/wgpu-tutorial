@@ -19,6 +19,9 @@ path = "examples/ch02/triangle_vertex_color.rs"
 name = "ch03_point_line"
 path = "examples/ch03/point_Line.rs"
 
+[[example]]
+name = "ch03_triangles"
+path = "examples/ch03/triangles.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
