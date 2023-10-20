@@ -4,19 +4,23 @@ version = "0.1.0"
 edition = "2021"
 
 [[example]]
-name="ch01_test01"
-path="examples/ch01/test01.rs"
+name = "ch01_test01"
+path = "examples/ch01/test01.rs"
+
+[[example]]
+name = "ch02_first_triangle"
+path = "examples/ch02/first_triangle.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wgpu="0.16.0"
-cgmath="0.18.0"
-env_logger="0.10.0"
-futures="0.3.28"
-gfx-hal="0.9"
-image="0.24.6"
-log="0.4.17"
-pollster="0.3.0"
-winit="0.28.6"
-anyhow="1.0.71"
+wgpu = "0.16.0"
+cgmath = "0.18.0"
+env_logger = "0.10.0"
+futures = "0.3.28"
+gfx-hal = "0.9"
+image = "0.24.6"
+log = "0.4.17"
+pollster = "0.3.0"
+winit = "0.28.6"
+anyhow = "1.0.71"
