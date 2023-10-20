@@ -11,6 +11,10 @@ path = "examples/ch01/test01.rs"
 name = "ch02_first_triangle"
 path = "examples/ch02/first_triangle.rs"
 
+[[example]]
+name = "ch02_color_triangle"
+path = "examples/ch02/triangle_vertex_color.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
