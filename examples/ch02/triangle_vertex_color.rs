@@ -1,3 +1,4 @@
+#[path = "../common/common.rs"]
 mod common;
 
 use std::borrow::Cow;
