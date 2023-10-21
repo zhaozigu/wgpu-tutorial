@@ -47,6 +47,10 @@ path = "examples/ch05/rotation.rs"
 name = "ch05_view_projection"
 path = "examples/ch05/view_projection.rs"
 
+[[example]]
+name = "ch06_line3d"
+path = "examples/ch06/line3d.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

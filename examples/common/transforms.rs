@@ -1,4 +1,6 @@
-use cgmath::{Matrix4, Rad, Vector3};
+use cgmath::*;
+use std::f32::consts::PI;
+use winit::window::Window;
 
 pub fn create_transforms(
     translation: [f32; 3],
@@ -15,4 +17,110 @@ pub fn create_transforms(
     let model_mat = trans_mat * rotate_mat_z * rotate_mat_y * rotate_mat_x * scale_mat;
 
     model_mat
+}
+
+pub struct InitWgpu {
+    pub surface: wgpu::Surface,
+    pub device: wgpu::Device,
+    pub queue: wgpu::Queue,
+    pub config: wgpu::SurfaceConfiguration,
+    pub size: winit::dpi::PhysicalSize<u32>,
+}
+
+impl InitWgpu {
+    pub async fn init_wgpu(window: &Window) -> Self {
+        let size = window.inner_size();
+        let instance = wgpu::Instance::new(wgpu::InstanceDescriptor::default());
+
+        let surface = unsafe { instance.create_surface(&window) }.unwrap();
+        let adapter = instance
+            .request_adapter(&wgpu::RequestAdapterOptions {
+                power_preference: wgpu::PowerPreference::default(),
+                force_fallback_adapter: false,
+                compatible_surface: Some(&surface),
+            })
+            .await
+            .expect("Failed to find an appropriate adapter");
+
+        let (device, queue) = adapter
+            .request_device(
+                &wgpu::DeviceDescriptor {
+                    label: None,
+                    features: wgpu::Features::empty(),
+                    limits: wgpu::Limits::default(),
+                },
+                None,
+            )
+            .await
+            .expect("Failed to create device");
+
+        let swapchain_capabilities = surface.get_capabilities(&adapter);
+        let swapchain_format = swapchain_capabilities.formats[0];
+
+        let config = wgpu::SurfaceConfiguration {
+            usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
+            format: swapchain_format,
+            width: size.width,
+            height: size.height,
+            present_mode: wgpu::PresentMode::Fifo,
+            alpha_mode: swapchain_capabilities.alpha_modes[0],
+            view_formats: vec![],
+        };
+
+        surface.configure(&device, &config);
+
+        Self {
+            surface,
+            device,
+            queue,
+            config,
+            size,
+        }
+    }
+}
+
+#[rustfmt::skip]
+pub const OPENGL_TO_WGPU_MATRIX: Matrix4<f32> = Matrix4::new(
+    1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 0.5, 0.0,
+    0.0, 0.0, 0.5, 1.0,
+);
+
+pub fn create_view_projection(
+    camera_position: Point3<f32>,
+    look_direction: Point3<f32>,
+    up_direction: Vector3<f32>,
+    aspect: f32,
+    is_perspective: bool,
+) -> (Matrix4<f32>, Matrix4<f32>, Matrix4<f32>) {
+    let view_mat = Matrix4::look_at_rh(camera_position, look_direction, up_direction);
+    let project_mat: Matrix4<f32>;
+    if is_perspective {
+        project_mat = OPENGL_TO_WGPU_MATRIX * perspective(Rad(2.0 * PI / 5.0), aspect, 0.1, 100.0);
+    } else {
+        project_mat = OPENGL_TO_WGPU_MATRIX * ortho(-4.0, 4.0, -3.0, 3.0, -1.0, 6.0);
+    }
+    let view_project_mat = project_mat * view_mat;
+
+    (view_mat, project_mat, view_project_mat)
+}
+
+#[allow(dead_code)]
+pub fn create_view(
+    camera_position: Point3<f32>,
+    look_direction: Point3<f32>,
+    up_direction: Vector3<f32>,
+) -> Matrix4<f32> {
+    Matrix4::look_at_rh(camera_position, look_direction, up_direction)
+}
+
+pub fn create_projection(aspect: f32, is_perspective: bool) -> Matrix4<f32> {
+    let project_mat: Matrix4<f32>;
+    if is_perspective {
+        project_mat = OPENGL_TO_WGPU_MATRIX * perspective(Rad(2.0 * PI / 5.0), aspect, 0.1, 100.0);
+    } else {
+        project_mat = OPENGL_TO_WGPU_MATRIX * ortho(-4.0, 4.0, -3.0, 3.0, -1.0, 6.0);
+    }
+    project_mat
 }
