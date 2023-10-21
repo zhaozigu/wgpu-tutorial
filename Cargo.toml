@@ -39,6 +39,6 @@ gfx-hal = "0.9"
 image = "0.24.6"
 log = "0.4.17"
 pollster = "0.3.0"
-winit = "0.28.6"
+winit = "0.28.7"
 anyhow = "1.0.71"
 bytemuck = { version = "1.14.0", features = ["derive"] }

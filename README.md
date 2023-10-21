@@ -5,6 +5,7 @@
 - [ch02_color_triangle](examples/ch02/triangle_vertex_color.rs): Triangle with vertex color
 - [ch03_point_line](examples/ch03/point_line.rs): draw only a few basic shapes
 - [ch03_triangles](examples/ch03/triangles.rs): `TriangleList` and `TriangleStrip`
+- [ch04_triangles](examples/ch04/triangles.rs): colored triangle created using GPU buffers
 
 ## Usage
 
