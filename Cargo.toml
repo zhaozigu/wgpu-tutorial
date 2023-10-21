@@ -23,6 +23,11 @@ path = "examples/ch03/point_Line.rs"
 name = "ch03_triangles"
 path = "examples/ch03/triangles.rs"
 
+[[example]]
+name = "ch04_triangles"
+path = "examples/ch04/triangles.rs"
+
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -36,3 +41,4 @@ log = "0.4.17"
 pollster = "0.3.0"
 winit = "0.28.6"
 anyhow = "1.0.71"
+bytemuck = { version = "1.14.0", features = ["derive"] }
