@@ -27,6 +27,13 @@ path = "examples/ch03/triangles.rs"
 name = "ch04_triangles"
 path = "examples/ch04/triangles.rs"
 
+[[example]]
+name = "ch04_square"
+path = "examples/ch04/square.rs"
+
+[[example]]
+name = "ch04_square_index"
+path = "examples/ch04/square_index.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

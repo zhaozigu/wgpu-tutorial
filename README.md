@@ -6,6 +6,8 @@
 - [ch03_point_line](examples/ch03/point_line.rs): draw only a few basic shapes
 - [ch03_triangles](examples/ch03/triangles.rs): `TriangleList` and `TriangleStrip`
 - [ch04_triangles](examples/ch04/triangles.rs): colored triangle created using GPU buffers
+- [ch04_square](examples/ch04/square.rs): colorful square created using GPU buffers
+- [ch04_square_index](examples/ch04/square_index.rs): square created using an index GPU buffers
 
 ## Usage
 
