@@ -5,7 +5,7 @@ use std::borrow::Cow;
 use winit::{event_loop::EventLoop, window::Window};
 
 fn main() {
-    let event_loop = EventLoop::new();
+    let event_loop = EventLoop::new().unwrap();
     let window = Window::new(&event_loop).unwrap();
     window.set_title("first_triangle");
     env_logger::init();

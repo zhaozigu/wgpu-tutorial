@@ -27,7 +27,7 @@ fn main() {
         strip_index_format: index_format,
     };
 
-    let event_loop = EventLoop::new();
+    let event_loop = EventLoop::new().unwrap();
     let window = winit::window::Window::new(&event_loop).unwrap();
 
     window.set_title(&*format!("{}: {}", "Primitive", primitive_type));

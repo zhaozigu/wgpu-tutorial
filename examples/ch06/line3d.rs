@@ -193,6 +193,7 @@ impl State {
         }
     }
 
+    #[allow(dead_code)]
     fn input(&mut self, _event: &WindowEvent) -> bool {
         false
     }
@@ -245,48 +246,41 @@ impl State {
 
 fn main() {
     env_logger::init();
-    let event_loop = EventLoop::new();
+    let event_loop = EventLoop::new().unwrap();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
     window.set_title(&*format!("{}", "ch06-3d-line"));
     let mut state = pollster::block_on(State::new(&window));
 
-    event_loop.run(move |event, _, control_flow| match event {
+    event_loop.set_control_flow(ControlFlow::Wait);
+    let _ = event_loop.run(move |event, elwt| match event {
         Event::WindowEvent {
-            ref event,
-            window_id,
-        } if window_id == window.id() => {
-            if !state.input(event) {
-                match event {
-                    WindowEvent::CloseRequested
-                    | WindowEvent::KeyboardInput {
-                        input:
-                            KeyboardInput {
-                                state: ElementState::Pressed,
-                                virtual_keycode: Some(VirtualKeyCode::Escape),
-                                ..
-                            },
-                        ..
-                    } => *control_flow = ControlFlow::Exit,
-                    WindowEvent::Resized(physical_size) => {
-                        state.resize(*physical_size);
-                    }
-                    WindowEvent::ScaleFactorChanged { new_inner_size, .. } => {
-                        state.resize(**new_inner_size);
-                    }
-                    _ => {}
-                }
-            }
+            event: WindowEvent::Resized(size),
+            ..
+        } => {
+            state.init.config.width = size.width;
+            state.init.config.height = size.height;
+            state
+                .init
+                .surface
+                .configure(&state.init.device, &state.init.config);
         }
-        Event::RedrawRequested(_) => {
+        Event::WindowEvent {
+            event: WindowEvent::RedrawRequested,
+            ..
+        } => {
             state.update();
             match state.render() {
                 Ok(_) => {}
                 Err(wgpu::SurfaceError::Lost) => state.resize(state.init.size),
-                Err(wgpu::SurfaceError::OutOfMemory) => *control_flow = ControlFlow::Exit,
+                Err(wgpu::SurfaceError::OutOfMemory) => elwt.exit(),
                 Err(e) => eprintln!("{:?}", e),
             }
         }
-        Event::MainEventsCleared => {
+        Event::WindowEvent {
+            event: WindowEvent::CloseRequested,
+            ..
+        } => elwt.exit(),
+        Event::AboutToWait => {
             window.request_redraw();
         }
         _ => {}

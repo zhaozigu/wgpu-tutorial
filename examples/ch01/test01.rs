@@ -5,19 +5,19 @@ use winit::{
 };
 
 fn main() {
-    let event_loop = EventLoop::new();
+    let event_loop = EventLoop::new().unwrap();
     let window = Window::new(&event_loop).unwrap();
+
+    event_loop.set_control_flow(ControlFlow::Wait);
+
     window.set_title("window");
     env_logger::init();
 
-    event_loop.run(move |event, _, control_flow| {
-        *control_flow = ControlFlow::Wait;
-        match event {
-            Event::WindowEvent {
-                event: WindowEvent::CloseRequested,
-                ..
-            } => *control_flow = ControlFlow::Exit,
-            _ => {}
-        }
+    let _ = event_loop.run(move |event, elwt| match event {
+        Event::WindowEvent {
+            event: WindowEvent::CloseRequested,
+            ..
+        } => elwt.exit(),
+        _ => {}
     });
 }

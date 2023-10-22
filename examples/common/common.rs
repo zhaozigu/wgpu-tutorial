@@ -90,9 +90,9 @@ pub async fn run(event_loop: EventLoop<()>, window: Window, inputs: Inputs<'_>, 
         multiview: None,
     });
 
-    event_loop.run(move |event, _, control_flow| {
+    event_loop.set_control_flow(ControlFlow::Wait);
+    let _ = event_loop.run(move |event, elwt| {
         let _ = (&instance, &adapter, &shader, &pipeline_layout);
-        *control_flow = ControlFlow::Wait;
         match event {
             Event::WindowEvent {
                 event: WindowEvent::Resized(size),
@@ -102,7 +102,10 @@ pub async fn run(event_loop: EventLoop<()>, window: Window, inputs: Inputs<'_>, 
                 config.height = size.height;
                 surface.configure(&device, &config);
             }
-            Event::RedrawRequested(_) => {
+            Event::WindowEvent {
+                event: WindowEvent::RedrawRequested,
+                ..
+            } => {
                 let frame = surface.get_current_texture().unwrap();
                 let view = frame
                     .texture
@@ -137,7 +140,7 @@ pub async fn run(event_loop: EventLoop<()>, window: Window, inputs: Inputs<'_>, 
             Event::WindowEvent {
                 event: WindowEvent::CloseRequested,
                 ..
-            } => *control_flow = ControlFlow::Exit,
+            } => elwt.exit(),
             _ => {}
         }
     });
