@@ -59,6 +59,10 @@ path = "examples/ch06/cube_face_color.rs"
 name = "ch06_cube_vertex_color"
 path = "examples/ch06/cube_vertex_color.rs"
 
+[[example]]
+name = "ch06_rotate_cube"
+path = "examples/ch06/rotate_cube.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
