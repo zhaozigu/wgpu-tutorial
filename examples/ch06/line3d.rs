@@ -10,7 +10,7 @@ use winit::{
 #[path = "../common/transforms.rs"]
 mod transforms;
 
-const IS_PERSPECTIVE: bool = false;
+const IS_PERSPECTIVE: bool = true;
 
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Pod, Zeroable)]
@@ -76,7 +76,7 @@ impl State {
             look_direction,
             up_direction,
             init.config.width as f32 / init.config.height as f32,
-            false,
+            IS_PERSPECTIVE,
         );
 
         let mvp_mat = view_project_mat * model_mat;
