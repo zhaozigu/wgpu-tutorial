@@ -11,6 +11,7 @@
 - ch05 is some basic CG mathematical calculations
 - [ch06_line3d](examples/ch06/line3d.rs): 3D line
 - [ch06_cube_face_color](examples/ch06/cube_face_color.rs): 3D cube
+- [ch06_cube_vertex_color](examples/ch06/cube_vertex_color.rs): 3D cube (index buffer)
 
 ## Usage
 
