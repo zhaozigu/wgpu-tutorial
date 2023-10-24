@@ -63,6 +63,10 @@ path = "examples/ch06/cube_vertex_color.rs"
 name = "ch06_rotate_cube"
 path = "examples/ch06/rotate_cube.rs"
 
+[[example]]
+name = "ch06_camera_control"
+path = "examples/ch06/camera_control.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
