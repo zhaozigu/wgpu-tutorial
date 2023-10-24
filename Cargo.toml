@@ -51,6 +51,10 @@ path = "examples/ch05/view_projection.rs"
 name = "ch06_line3d"
 path = "examples/ch06/line3d.rs"
 
+[[example]]
+name = "ch06_cube_face_color"
+path = "examples/ch06/cube_face_color.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
