@@ -15,6 +15,7 @@
 - [ch06_rotate_cube](examples/ch06/rotate_cube.rs): rotating cube (`update`)
 - [ch06_camera_control](examples/ch06/camera_control.rs): interact with the cube using mouse
 - [ch07_cube](examples/ch07/cube.rs): cube wireframe
+- [ch07_sphere](examples/ch07/sphere.rs): sphere wireframe
 
 ## Usage
 
