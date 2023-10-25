@@ -83,6 +83,10 @@ path = "examples/ch07/cylinder.rs"
 name = "ch07_cone"
 path = "examples/ch07/cone.rs"
 
+[[example]]
+name = "ch07_torus"
+path = "examples/ch07/torus.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
