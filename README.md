@@ -17,6 +17,7 @@
 - [ch07_cube](examples/ch07/cube.rs): cube wireframe
 - [ch07_sphere](examples/ch07/sphere.rs): sphere wireframe
 - [ch07_cylinder](examples/ch07/cylinder.rs): cylinder wireframe
+- [ch07_cone](examples/ch07/cone.rs): cone wireframe
 
 ## Usage
 
