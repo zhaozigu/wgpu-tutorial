@@ -67,6 +67,10 @@ path = "examples/ch06/rotate_cube.rs"
 name = "ch06_camera_control"
 path = "examples/ch06/camera_control.rs"
 
+[[example]]
+name = "ch07_cube"
+path = "examples/ch07/cube.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

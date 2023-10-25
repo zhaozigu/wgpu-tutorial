@@ -2,6 +2,7 @@ use cgmath::*;
 use std::f32::consts::PI;
 use winit::window::Window;
 
+#[allow(dead_code)]
 pub fn create_transforms(
     translation: [f32; 3],
     rotation: [f32; 3],
@@ -87,6 +88,7 @@ pub const OPENGL_TO_WGPU_MATRIX: Matrix4<f32> = Matrix4::new(
     0.0, 0.0, 0.5, 1.0,
 );
 
+#[allow(dead_code)]
 pub fn create_view_projection(
     camera_position: Point3<f32>,
     look_direction: Point3<f32>,
