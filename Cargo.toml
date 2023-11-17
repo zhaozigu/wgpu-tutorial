@@ -95,6 +95,10 @@ path = "examples/ch08/cube.rs"
 name = "ch09_sinc"
 path = "examples/ch09/sinc.rs"
 
+[[example]]
+name = "ch10_cube"
+path = "examples/ch10/cube.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
